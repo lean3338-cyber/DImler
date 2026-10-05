@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panel de demostración - Team DimLer</title>
+    <link rel="stylesheet" href="styles/styles.css">
+    <script src="js/admin-demo.js" defer></script>
+</head>
+<body>
+    <header class="banner">
+        <h1>Team DimLer</h1>
+        <nav aria-label="Navegación principal">
+            <ul>
+                <li><a href="index.html">Volver a la tienda</a></li>
+                <li><a href="admin.php">Panel real</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main class="principal admin-demo">
+        <p class="aviso aviso-error" role="note">Vista de demostración: los cambios se guardan solo en este navegador y no son pedidos ni productos reales.</p>
+        <h2 class="titulo-pagina">Panel de administración</h2>
+
+        <section class="admin-metricas" aria-label="Resumen">
+            <article class="admin-metrica"><span>Productos</span><strong id="metric-productos">0</strong></article>
+            <article class="admin-metrica"><span>Pedidos pendientes</span><strong id="metric-pedidos">0</strong></article>
+            <article class="admin-metrica"><span>Ventas de demostración</span><strong id="metric-ventas">$0</strong></article>
+            <article class="admin-metrica"><span>Productos con poco stock</span><strong id="metric-stock-bajo">0</strong></article>
+        </section>
+
+        <section aria-labelledby="admin-productos-titulo">
+            <div class="admin-seccion-titulo">
+                <h3 id="admin-productos-titulo">Productos</h3>
+                <span id="admin-productos-cantidad" class="admin-productos-total">0 productos en total</span>
+                <button id="admin-mostrar-formulario" class="boton-principal" type="button">Agregar producto</button>
+            </div>
+            <aside id="admin-demo-alerta-stock" class="admin-alerta-stock" aria-labelledby="admin-demo-alerta-stock-titulo" hidden>
+                <h4 id="admin-demo-alerta-stock-titulo">Revisar stock bajo</h4>
+                <p>Estos productos de demostración tienen 3 unidades o menos.</p>
+                <ul id="admin-demo-lista-stock-bajo"></ul>
+            </aside>
+            <div class="admin-filtros-productos" role="search" aria-label="Buscar y filtrar productos de demostración">
+                <div>
+                    <label for="admin-demo-buscar">Buscar producto</label>
+                    <input id="admin-demo-buscar" type="search" placeholder="Nombre del producto">
+                </div>
+                <div>
+                    <label for="admin-demo-categoria">Categoría</label>
+                    <select id="admin-demo-categoria">
+                        <option value="">Todas</option>
+                        <option value="crochet">Crochet</option>
+                        <option value="tejidos">Tejidos</option>
+                        <option value="manualidades">Manualidades</option>
+                        <option value="libreria">Librería</option>
+                        <option value="costura">Costura</option>
+                    </select>
+                </div>
+                <div>
+                    <label for="admin-demo-estado">Estado</label>
+                    <select id="admin-demo-estado">
+                        <option value="">Todos</option>
+                        <option value="true">Publicados</option>
+                        <option value="false">Desactivados</option>
+                    </select>
+                </div>
+                <p id="admin-demo-resultados" aria-live="polite"></p>
+            </div>
+            <form id="admin-producto-form" class="formulario-panel formulario-demo admin-producto-form" hidden>
+                <label for="admin-nombre">Nombre</label>
+                <input id="admin-nombre" name="nombre" maxlength="160" required>
+                <label for="admin-categoria">Categoría</label>
+                <select id="admin-categoria" name="categoria" required>
+                    <option value="crochet">Crochet</option>
+                    <option value="tejidos">Tejidos</option>
+                    <option value="manualidades">Manualidades</option>
+                    <option value="libreria">Librería</option>
+                    <option value="costura">Costura</option>
+                </select>
+                <label for="admin-stock">Cantidad (solo demostración)</label>
+                <input id="admin-stock" name="stock" type="number" min="0" step="1" placeholder="Ingresá las unidades">
+                <label for="admin-precio">Precio</label>
+                <input id="admin-precio" name="precio" type="number" min="0" step="0.01" required>
+                <label for="admin-imagen">Ruta de imagen</label>
+                <input id="admin-imagen" name="imagen" placeholder="img/Generico.webp">
+                <button class="boton-principal" type="submit">Guardar producto</button>
+            </form>
+            <div id="admin-productos" class="tabla-contenedor"></div>
+            <p id="admin-demo-sin-resultados" class="estado-vacio" hidden>No hay productos que coincidan con esos filtros.</p>
+        </section>
+
+        <section aria-labelledby="admin-pedidos-titulo">
+            <h3 id="admin-pedidos-titulo">Pedidos</h3>
+            <div id="admin-pedidos" class="lista-pedidos"></div>
+        </section>
+    </main>
+</body>
+</html>
